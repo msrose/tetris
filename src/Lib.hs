@@ -7,7 +7,7 @@ import qualified Data.List as L
 tetris :: IO ()
 tetris = do
   putStrLn "Welcome to tetris"
-  pieces <- return [IPiece 0, SPiece 0, ZPiece 0, LPiece 0, JPiece 0, OPiece 0, TPiece 0]
+  pieces <- return [Piece I 0, Piece S 0, Piece Z 0, Piece L 0, Piece J 0, Piece O 0, Piece T 0]
   rots <- return [0..3]
   putStrLn $ concat $ L.intersperse "\n" $ show <$> (rotate <$> rots <*> (matrixify <$> pieces))
 
@@ -28,59 +28,57 @@ instance (Show t) => Show (Matrix t) where
   show (Matrix a b c d) = show a ++ "\n" ++ show b ++ "\n" ++ show c ++ "\n" ++ show d ++ "\n"
 
 type Rot = Int
-
-data Piece = IPiece Rot | SPiece Rot | ZPiece Rot | LPiece Rot | JPiece Rot | OPiece Rot | TPiece Rot
+data Letter = I | S | Z | L | J | O | T
+data Piece = Piece Letter Rot
 
 rotate 0 m = m
-rotate turns (Matrix (Row a b c d) (Row e f g h) (Row i j k l) (Row m n o p)) = rotate (turns - 1) (Matrix
+rotate turns (Matrix
+  (Row a b c d)
+  (Row e f g h)
+  (Row i j k l)
+  (Row m n o p)) = rotate (turns - 1) (Matrix
   (Row m i e a)
   (Row n j f b)
   (Row o k g c)
   (Row p l h d))
 
-basematrix (IPiece _) = Matrix
+basematrix (Piece I _) = Matrix
   (Row Blank Blank Blank Blank)
   (Row Block Block Block Block)
   (Row Blank Blank Blank Blank)
   (Row Blank Blank Blank Blank)
-basematrix (SPiece _) = Matrix
+basematrix (Piece S _) = Matrix
   (Row Blank Blank Blank Blank)
   (Row Blank Block Block Blank)
   (Row Block Block Blank Blank)
   (Row Blank Blank Blank Blank)
-basematrix (ZPiece _) = Matrix
+basematrix (Piece Z _) = Matrix
   (Row Blank Blank Blank Blank)
   (Row Block Block Blank Blank)
   (Row Blank Block Block Blank)
   (Row Blank Blank Blank Blank)
-basematrix (LPiece _) = Matrix
+basematrix (Piece L _) = Matrix
   (Row Blank Blank Blank Blank)
   (Row Blank Blank Blank Block)
   (Row Blank Block Block Block)
   (Row Blank Blank Blank Blank)
-basematrix (JPiece _) = Matrix
+basematrix (Piece J _) = Matrix
   (Row Blank Blank Blank Blank)
   (Row Block Blank Blank Blank)
   (Row Block Block Block Blank)
   (Row Blank Blank Blank Blank)
-basematrix (OPiece _) = Matrix
+basematrix (Piece O _) = Matrix
   (Row Blank Blank Blank Blank)
   (Row Blank Block Block Blank)
   (Row Blank Block Block Blank)
   (Row Blank Blank Blank Blank)
-basematrix (TPiece _) = Matrix
+basematrix (Piece T _) = Matrix
   (Row Blank Blank Blank Blank)
   (Row Block Block Block Blank)
   (Row Blank Block Blank Blank)
   (Row Blank Blank Blank Blank)
 
-matrixify piece@(IPiece rot) = rotate rot $ basematrix piece
-matrixify piece@(SPiece rot) = rotate rot $ basematrix piece
-matrixify piece@(ZPiece rot) = rotate rot $ basematrix piece
-matrixify piece@(LPiece rot) = rotate rot $ basematrix piece
-matrixify piece@(JPiece rot) = rotate rot $ basematrix piece
-matrixify piece@(OPiece rot) = rotate rot $ basematrix piece
-matrixify piece@(TPiece rot) = rotate rot $ basematrix piece
+matrixify piece@(Piece _ rot) = rotate rot $ basematrix piece
 
 instance Show Piece where
   show piece = show $ matrixify piece
