@@ -8,22 +8,21 @@ cabal-version: 1.12
 
 name:           tetris
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/tetris#readme>
-homepage:       https://github.com/githubuser/tetris#readme
-bug-reports:    https://github.com/githubuser/tetris/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2020 Author name here
-license:        BSD3
+description:    Please see the README on GitHub at <https://github.com/msrose/tetris#readme>
+homepage:       https://github.com/msrose/tetris#readme
+bug-reports:    https://github.com/msrose/tetris/issues
+author:         Michael Rose
+maintainer:     michael_rose@outlook.com
+copyright:      2020 Michael Rose
+license:        MIT
 license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
-    ChangeLog.md
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/tetris
+  location: https://github.com/msrose/tetris
 
 library
   exposed-modules:

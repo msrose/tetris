@@ -1,14 +1,13 @@
 name:                tetris
 version:             0.1.0.0
-github:              "githubuser/tetris"
+github:              "msrose/tetris"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2020 Author name here"
+author:              "Michael Rose"
+maintainer:          "michael_rose@outlook.com"
+copyright:           "2020 Michael Rose"
 
 extra-source-files:
 - README.md
-- ChangeLog.md
 
 # Metadata used when publishing your package
 # synopsis:            Short description of your package
@@ -17,7 +16,7 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/tetris#readme>
+description:         Please see the README on GitHub at <https://github.com/msrose/tetris#readme>
 
 dependencies:
 - base >= 4.7 && < 5
